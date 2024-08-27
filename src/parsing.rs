@@ -93,7 +93,6 @@ fn parse_x_part(x_part: &Vec<&str>) -> Result<u8, String> {
 fn vec_str_to_vec_f64(vec: Vec<&str>) -> Result<Vec<f64>, String> {
     let mut res = Vec::new();
     for value in vec {
-        // check err while parsing
         match value.parse::<f64>() {
             Ok(value) => res.push(value),
             Err(_) => return Err(format!("Invalid value: {}", value)),
