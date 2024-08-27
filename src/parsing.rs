@@ -42,6 +42,14 @@ fn parse_coefficient(values: &Vec<&str>) -> Result<Vec<(u8, f64)>, String> {
         let mut parts: Vec<&str> = value.split('*').collect();
         let mut x_parts: Vec<&str> = Vec::new();
         let mut i = 0;
+        if parts.len() == 1 && (&parts[0][0..1] == "+" || &parts[0][0..1] == "-") {
+            if &parts[0][0..1] == "-" {
+                parts.insert(1, "-1");
+            } else {
+                parts.insert(1, "1");
+            }
+            parts[0] = &parts[0][1..];
+        }
         while i < parts.len() {
             if parts[i].contains('X') {
                 x_parts.push(parts.remove(i));
